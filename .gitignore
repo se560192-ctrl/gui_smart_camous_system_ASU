@@ -1,0 +1,11 @@
+# Qt Creator files
+*.user
+
+# Build directories (المساحات الكبيرة اللي مش محتاجينها)
+build-*/
+debug/
+release/
+
+# Compiled files
+*.o
+*.obj

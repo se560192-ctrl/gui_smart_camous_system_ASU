@@ -1,0 +1,1 @@
+-I"S:/sp project/solar_energy/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/solar_energy_autogen/include" -isystem C:/qt/6.11.0/mingw_64/include/QtCore -isystem C:/qt/6.11.0/mingw_64/include -isystem "C:/qt/6.11.0/mingw_64/mkspecs/win32-g++" -isystem C:/qt/6.11.0/mingw_64/include/QtWidgets -isystem C:/qt/6.11.0/mingw_64/include/QtGui
