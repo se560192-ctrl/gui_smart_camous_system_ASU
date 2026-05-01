@@ -1,0 +1,24 @@
+1
+1
+sama
+123
+3
+1
+Building_A
+Academic
+900 500 44.4444
+2
+Building_B
+Lab
+1200 1000 16.6667
+3
+Software_A
+lab
+2000 3500 100
+4
+1 1 Jan 300
+2 1 Feb 200
+3 2 Jan 1000
+4 3 July 3500
+1
+1 3 July 1500 Unresolved
