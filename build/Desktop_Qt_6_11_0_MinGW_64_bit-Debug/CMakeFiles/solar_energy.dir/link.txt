@@ -1,3 +1,0 @@
-C:\qt\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\solar_energy.dir/objects.a
-C:\qt\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\solar_energy.dir/objects.a @CMakeFiles\solar_energy.dir\objects1.rsp
-C:\qt\Tools\mingw1310_64\bin\g++.exe -g -mwindows -Wl,--whole-archive CMakeFiles\solar_energy.dir/objects.a -Wl,--no-whole-archive -o solar_energy.exe -Wl,--out-implib,libsolar_energy.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\solar_energy.dir\linkLibs.rsp
