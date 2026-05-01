@@ -2,6 +2,7 @@
 S:/sp project/solar_energy/main.cpp
 S:/sp project/solar_energy/my_project.h
  mmc:Q_OBJECT
+ mdp:C:/qt/6.11.0/mingw_64/include/QtCore/QString
  mdp:C:/qt/6.11.0/mingw_64/include/QtCore/q17memory.h
  mdp:C:/qt/6.11.0/mingw_64/include/QtCore/q20bit.h
  mdp:C:/qt/6.11.0/mingw_64/include/QtCore/q20functional.h

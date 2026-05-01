@@ -389,6 +389,7 @@ CMakeFiles/solar_energy.dir/solar_energy_autogen/mocs_compilation.cpp.obj: \
  S:/sp\ project/solar_energy/building.h \
  S:/sp\ project/solar_energy/alert.h \
  S:/sp\ project/solar_energy/reading.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/Qstring \
  C:/qt/6.11.0/mingw_64/include/QtCore/qtmochelpers.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qtmocconstants.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/q20algorithm.h

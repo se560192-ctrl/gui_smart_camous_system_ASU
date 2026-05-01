@@ -388,6 +388,7 @@ CMakeFiles/solar_energy.dir/main.cpp.obj: \
  S:\sp\ project\solar_energy\building.h \
  S:\sp\ project\solar_energy\alert.h \
  S:\sp\ project\solar_energy\reading.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/Qstring \
  C:/qt/6.11.0/mingw_64/include/QtWidgets/QApplication \
  C:/qt/6.11.0/mingw_64/include/QtWidgets/qapplication.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qcoreapplication.h \
@@ -402,22 +403,4 @@ CMakeFiles/solar_energy.dir/main.cpp.obj: \
  C:/qt/6.11.0/mingw_64/include/QtGui/qinputmethod.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qlocale.h \
  C:/qt/6.11.0/mingw_64/include/QtGui/qguiapplication_platform.h \
- S:\sp\ project\solar_energy\filehandling.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ios \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype \
- C:/qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.tcc \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.tcc \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/codecvt.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fstream.tcc
+ S:\sp\ project\solar_energy\filehandling.h

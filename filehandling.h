@@ -1,5 +1,4 @@
 #pragma once
-#include<fstream>
 #include "building.h"
 #include "alert.h"
 #include "reading.h"

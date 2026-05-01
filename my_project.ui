@@ -10,6 +10,11 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
   <property name="cursor">
    <cursorShape>OpenHandCursor</cursorShape>
   </property>
@@ -19,30 +24,39 @@
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>20</y>
+     <x>20</x>
+     <y>10</y>
      <width>771</width>
-     <height>581</height>
+     <height>531</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="currentIndex">
+    <number>5</number>
    </property>
    <widget class="QWidget" name="first_page">
     <widget class="QLabel" name="welcome_label">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>20</y>
-       <width>751</width>
-       <height>101</height>
+       <x>-40</x>
+       <y>10</y>
+       <width>821</width>
+       <height>121</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>16</pointsize>
        <bold>true</bold>
       </font>
      </property>
      <property name="text">
-      <string>welocome to smart energy menitor</string>
+      <string>WELCOME TO OUR SMART CAMPUS ENERGY CONSUMPTION MONITOR</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -51,15 +65,16 @@
     <widget class="QLabel" name="description_label">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>110</y>
-       <width>501</width>
-       <height>81</height>
+       <x>180</x>
+       <y>170</y>
+       <width>451</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>15</pointsize>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
@@ -73,8 +88,8 @@
     <widget class="QPushButton" name="monitoring_btn">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>330</y>
+       <x>270</x>
+       <y>340</y>
        <width>191</width>
        <height>51</height>
       </rect>
@@ -87,6 +102,789 @@
      </property>
      <property name="text">
       <string>start monitoring</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="Building_menu">
+    <widget class="QPushButton" name="Add_new_building_btn">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>160</y>
+       <width>541</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ADD NEW BUILDING</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="display_BI_btn">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>270</y>
+       <width>541</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>DISPLAY BUILDING INFORMATION</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="DISPLAY_BUILDING_INFO1">
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>30</y>
+       <width>521</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ENTER BUILDING INFORMATION</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>170</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BUILDING NAME :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>240</y>
+       <width>191</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BUILDING ID :</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="search_name">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>170</y>
+       <width>161</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="search_id">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>240</y>
+       <width>171</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Search_building">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>370</y>
+       <width>211</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>SEARCH</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="DISPLAY_BUILDING_INFO1_2">
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>30</y>
+       <width>541</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>DISPLAY BUILDING INFORMATION </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>120</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BUILDING NAME :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>160</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BUILDING ID :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_19">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>200</y>
+       <width>201</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BUILDING TYPE :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_20">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>240</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>LIMIT :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_21">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>280</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>CONSUMPTION :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_22">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>320</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>SCORE :</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BACK_DBI">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>410</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BACK</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="label_name">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>120</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="label_id">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>160</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="label_type">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>200</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="label_limit">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>240</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="label_consumption">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>280</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="label_score">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>330</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="ADD_NEW_BUILDING_PAGE">
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>100</y>
+       <width>281</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ENTER BUILDING ID :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>160</y>
+       <width>311</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ENTER BUILDING NAME :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>220</y>
+       <width>291</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ENTER BUILDING TYPE :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>280</y>
+       <width>291</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ENTER BUILDING LIMIT : </string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="id_input">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>110</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="name_input">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>170</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="type_input">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>230</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="limit_input">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>280</y>
+       <width>113</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Add_building_confirm">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>370</y>
+       <width>271</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ADD BUILDING</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Back_ANB">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>450</y>
+       <width>261</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BACK</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>20</y>
+       <width>351</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ADD NEW BUILDING</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="menu_page">
+    <widget class="QPushButton" name="new_energy_reading_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>200</y>
+       <width>321</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>ADD NEW ENERGY READING</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="display_information_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>321</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DISPLAY BUILDING INFORMATION / ADD NB</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="generate_alerts_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>310</y>
+       <width>321</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>GENERATE ALERTS FOR OVERCONSUMPTION</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="view_unresolverd_alerts">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>430</y>
+       <width>321</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>VIEW UNRESOLVED ALERTS</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="calculate_effieciancy_score_btn">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>200</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CALCULATE EFFICIENCY SCORE </string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="generate_montly_report_btn">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>320</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>GENERATE MONTHLY CAMPUS REPORT</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="resolve_alert_btn">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>90</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RESOLVE ALERT</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="log_out_btn">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>430</y>
+       <width>281</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>LOG OUT</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>20</y>
+       <width>261</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>25</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>MAIN MENU</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="calculate_efficiency_score">
+    <widget class="QLabel" name="label_23">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>20</y>
+       <width>451</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>RUN EFFICIENCY ANALYSIS</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_24">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>90</y>
+       <width>611</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>This will update the scores for all buildings based on 
+                          the latest consumption data</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="START_CALCULATION_BTN">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>210</y>
+       <width>291</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>START CALCULATON</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="progressBar_calc">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>310</y>
+       <width>291</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QProgressBar {
+    border: 2px solid grey;
+    border-radius: 5px;
+    text-align: center;
+}
+
+QProgressBar::chunk {
+    background-color: #4CAF50; /* لون أخضر */
+    width: 20px;
+}</string>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="CALC_LABEL">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>370</y>
+       <width>381</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Last calculated: Never</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BACK_CALC">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>440</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BACK</string>
      </property>
     </widget>
    </widget>
@@ -149,7 +947,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Energy menitor login</string>
+      <string>Energy monitor login</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -167,6 +965,7 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
@@ -188,6 +987,7 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
@@ -206,6 +1006,7 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
@@ -280,6 +1081,7 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
@@ -298,6 +1100,7 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
@@ -354,6 +1157,293 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="ANER_1">
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>30</y>
+       <width>411</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>22</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BUILDING VALIDATION </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>170</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BUILDING NAME :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>230</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BUILDING ID:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="BNAME_ANER">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>170</y>
+       <width>231</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="BID_ANER">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>230</y>
+       <width>231</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="CON_N_ID_ANER">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>330</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CONFIRM</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BACK_MENU">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>410</y>
+       <width>151</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>BACK</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="ADEN_2">
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>30</y>
+       <width>511</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>22</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ADD NEW ENERGY READING</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>150</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ENTER MONTH:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>220</y>
+       <width>351</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>ENTER CONSUMPTION VALUE :</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="READING_MONTH">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>150</y>
+       <width>191</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="READING_VALUE">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>220</y>
+       <width>221</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="CONFIRM_NER">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>320</y>
+       <width>171</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>CONFIRM</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BACK_MENU_ANER2">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>410</y>
+       <width>171</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BACK</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="view_unresolved_alerts">
+    <widget class="QListWidget" name="listWidget_alerts">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>110</y>
+       <width>691</width>
+       <height>331</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="spacing">
+      <number>5</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_25">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>40</y>
+       <width>441</width>
+       <height>44</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>VIEW UNRESOLVED ALERTS </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BACK_VURA">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>458</y>
+       <width>141</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BACK</string>
      </property>
     </widget>
    </widget>

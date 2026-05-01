@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <iostream>
+#include "building.h"
 using namespace std;
 
 // Eman declare any functions or structs related to generating reports in this file
@@ -8,15 +10,11 @@ using namespace std;
 // write functions definitions in report.cpp
 
 
-//declare function to generate monthly campus report---> Eman
-void generateMonthlyCampusReport(building buildings[], int building_counter, int numberOfUnresolvedAlerts , int numberOfResolvedAlerts);
+// تحسب إجمالي استهلاك الحرم الجامعي وترجعه كرقم
+float calculateTotalCampusConsumption(building buildings[], int building_counter);
 
-//declare function to calculate Total Campus Consumption--> Eman
-void calculateTotalCampusConsumption(building buildings[], int building_counter);
+// تجد المبنى الأكثر كفاءة وترجع اسمه
+string getMostEfficientBuilding(building buildings[], int building_counter);
 
-//declare function to find the most efficient building--> Eman
-void findMostEfficientBuilding(building buildings[], int building_counter);
-
-//declare function to find the least efficient building--> Eman
-void findLeastEfficientBuilding(building buildings[], int building_counter);
-
+// تجد المبنى الأقل كفاءة وترجع اسمه
+string getLeastEfficientBuilding(building buildings[], int building_counter);

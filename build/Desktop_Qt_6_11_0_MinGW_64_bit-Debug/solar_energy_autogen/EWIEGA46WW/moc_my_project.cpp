@@ -43,7 +43,28 @@ template <> constexpr inline auto my_project::qt_create_metaobjectdata<qt_meta_t
         "",
         "on_login_btn_clicked",
         "on_newadmin_btn_clicked",
-        "on_confirm_botton_clicked"
+        "on_confirm_botton_clicked",
+        "on_new_energy_reading_btn_clicked",
+        "on_CON_N_ID_ANER_clicked",
+        "on_BACK_MENU_clicked",
+        "on_CONFIRM_NER_clicked",
+        "on_BACK_MENU_ANER2_clicked",
+        "on_display_information_btn_clicked",
+        "on_Add_building_confirm_clicked",
+        "on_Add_new_building_btn_clicked",
+        "on_Back_ANB_clicked",
+        "on_display_BI_btn_clicked",
+        "on_BACK_DBI_clicked",
+        "on_Search_building_clicked",
+        "on_START_CALCULATION_BTN_clicked",
+        "on_BACK_CALC_clicked",
+        "on_calculate_effieciancy_score_btn_clicked",
+        "on_log_out_btn_clicked",
+        "on_generate_alerts_btn_clicked",
+        "on_view_unresolverd_alerts_clicked",
+        "on_BACK_VURA_clicked",
+        "on_resolve_alert_btn_clicked",
+        "on_generate_montly_report_btn_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -55,6 +76,48 @@ template <> constexpr inline auto my_project::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_confirm_botton_clicked'
         QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_new_energy_reading_btn_clicked'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_CON_N_ID_ANER_clicked'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_BACK_MENU_clicked'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_CONFIRM_NER_clicked'
+        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_BACK_MENU_ANER2_clicked'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_display_information_btn_clicked'
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_Add_building_confirm_clicked'
+        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_Add_new_building_btn_clicked'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_Back_ANB_clicked'
+        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_display_BI_btn_clicked'
+        QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_BACK_DBI_clicked'
+        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_Search_building_clicked'
+        QtMocHelpers::SlotData<void()>(17, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_START_CALCULATION_BTN_clicked'
+        QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_BACK_CALC_clicked'
+        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_calculate_effieciancy_score_btn_clicked'
+        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_log_out_btn_clicked'
+        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_generate_alerts_btn_clicked'
+        QtMocHelpers::SlotData<void()>(22, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_view_unresolverd_alerts_clicked'
+        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_BACK_VURA_clicked'
+        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_resolve_alert_btn_clicked'
+        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_generate_montly_report_btn_clicked'
+        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -82,6 +145,27 @@ void my_project::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_login_btn_clicked(); break;
         case 2: _t->on_newadmin_btn_clicked(); break;
         case 3: _t->on_confirm_botton_clicked(); break;
+        case 4: _t->on_new_energy_reading_btn_clicked(); break;
+        case 5: _t->on_CON_N_ID_ANER_clicked(); break;
+        case 6: _t->on_BACK_MENU_clicked(); break;
+        case 7: _t->on_CONFIRM_NER_clicked(); break;
+        case 8: _t->on_BACK_MENU_ANER2_clicked(); break;
+        case 9: _t->on_display_information_btn_clicked(); break;
+        case 10: _t->on_Add_building_confirm_clicked(); break;
+        case 11: _t->on_Add_new_building_btn_clicked(); break;
+        case 12: _t->on_Back_ANB_clicked(); break;
+        case 13: _t->on_display_BI_btn_clicked(); break;
+        case 14: _t->on_BACK_DBI_clicked(); break;
+        case 15: _t->on_Search_building_clicked(); break;
+        case 16: _t->on_START_CALCULATION_BTN_clicked(); break;
+        case 17: _t->on_BACK_CALC_clicked(); break;
+        case 18: _t->on_calculate_effieciancy_score_btn_clicked(); break;
+        case 19: _t->on_log_out_btn_clicked(); break;
+        case 20: _t->on_generate_alerts_btn_clicked(); break;
+        case 21: _t->on_view_unresolverd_alerts_clicked(); break;
+        case 22: _t->on_BACK_VURA_clicked(); break;
+        case 23: _t->on_resolve_alert_btn_clicked(); break;
+        case 24: _t->on_generate_montly_report_btn_clicked(); break;
         default: ;
         }
     }
@@ -107,14 +191,14 @@ int my_project::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 25;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 25)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 25;
     }
     return _id;
 }

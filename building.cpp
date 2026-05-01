@@ -1,69 +1,67 @@
-#include<iostream>
 #include<string>
 #include "building.h"
 #include "alert.h"
-#include "reading.h"
-#include "admin.h"
+#include <QMessageBox>
 using namespace std;
 // define function to calculate efficiency score --> sondus
 void calculateEfficiencyScore(building buildings[],int building_counter) {
 	for (int i = 0; i < building_counter; i++) {
 		if (buildings[i].Monthly_Limit > 0) {
 
-			buildings[i].Efficiency_Score = ((buildings[i].Monthly_Limit - buildings[i].Total_consumption) / buildings[i].Monthly_Limit) * 100;
+            buildings[i].Efficiency_Score = (buildings[i].Monthly_Limit - buildings[i].Total_consumption) * 100.0 / buildings[i].Monthly_Limit;
 		}
 		else {
 			buildings[i].Efficiency_Score = 0;
 		}
 	}
-	cout << "Efficiency score updated successfully" << endl;
 
 }
 
 //define function to add new building ---> basmala
-void AddBuilding(building &buildings,int &building_counter)
+void AddBuildingGUI(building buildings[], int& building_counter, int id, string name, string type, float limit)
 {
-	int id;
-	string name;
-	string type;
-	float monthly_limit;
-	cout << "Enter building ID: ";
-	cin >> id;
-	cout << "Enter building name: ";
-	cin.ignore(); // Ignore the newline character left in the input buffer 
-	getline(cin, name);
-	cout << "Enter building type: ";
-	getline(cin, type);
-	cout << "Enter monthly limit: ";
-	cin >> monthly_limit;
-	buildings.ID = id;
-	buildings.Name = name;
-	buildings.type = type;
-	buildings.Monthly_Limit = monthly_limit;
-	buildings.Total_consumption = 0.0; // Initialize total consumption to 0
-	buildings.Efficiency_Score = 100.0; // Initialize efficiency score to 100
-	building_counter++; // Increment the building counter
-	cout << "Building added successfully!" << endl;
-	
+    // نفس الشرط بتاعك بالظبط
+    if (building_counter < 10) {
+
+        // 1. التأكد من الـ ID (نفس الـ Loop)
+        for (int i = 0; i < building_counter; i++) {
+            if (id == buildings[i].ID) {
+                QMessageBox::critical(nullptr, "Error", "A building with this ID already exists!");
+                return; // بنخرج عشان اليوزر يعدل الرقم ويدوس تاني
+            }
+        }
+
+        // 2. التأكد من الاسم (نفس الـ Loop)
+        for (int i = 0; i < building_counter; i++) {
+            if (name == buildings[i].Name) {
+                QMessageBox::critical(nullptr, "Error", "A building with this name already exists!");
+                return;
+            }
+        }
+
+        // 3. التخزين (نفس الطريقة)
+        buildings[building_counter].ID = id;
+        buildings[building_counter].Name = name;
+        buildings[building_counter].type = type;
+        buildings[building_counter].Monthly_Limit = limit;
+        buildings[building_counter].Total_consumption = 0.0;
+        buildings[building_counter].Efficiency_Score = 100.0;
+
+        building_counter++;
+
+        QMessageBox::information(nullptr, "Success", "Building added successfully!");
+    }
+    else {
+        QMessageBox::warning(nullptr, "Limit Reached", "Building limit reached! Cannot add more buildings.");
+    }
 }
 // define function to display building information ---> basmala
-void displayBuildingInfo(building buildings[], int building_counter) {
-	int id;
-	cout << "Enter building ID: ";
-	cin >> id;
-	cin.ignore();
-	string building_name;
-	getline(cin, building_name);
-	for (int i = 0; i < building_counter; i++) {
-		if (buildings[i].ID == id && buildings[i].Name == building_name) {
-			cout << "Building ID: " << buildings[i].ID << endl;
-			cout << "Building Name: " << buildings[i].Name << endl;
-			cout << "Building Type: " << buildings[i].type << endl;
-			cout << "Monthly Limit: " << buildings[i].Monthly_Limit << " kWh" << endl;
-			cout << "Total Consumption: " << buildings[i].Total_consumption << " kWh" << endl;
-			cout << "Efficiency Score: " << buildings[i].Efficiency_Score << "%" << endl;
-			cout << "-----------------------------" << endl;
-			return;
-		}
-	}
+// فانكشن بتدور على المبنى
+int findBuildingIndex(building buildings[], int building_counter, int id, string name) {
+    for (int i = 0; i < building_counter; i++) {
+        if (buildings[i].ID == id && buildings[i].Name == name) {
+            return i; // لقيناه!
+        }
+    }
+    return -1; // مش موجود
 }

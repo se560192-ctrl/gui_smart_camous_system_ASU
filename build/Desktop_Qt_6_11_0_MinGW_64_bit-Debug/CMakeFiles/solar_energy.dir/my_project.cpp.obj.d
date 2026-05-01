@@ -388,6 +388,7 @@ CMakeFiles/solar_energy.dir/my_project.cpp.obj: \
  S:\sp\ project\solar_energy\building.h \
  S:\sp\ project\solar_energy\alert.h \
  S:\sp\ project\solar_energy\reading.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/Qstring \
  S:/sp\ project/solar_energy/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/solar_energy_autogen/include/ui_my_project.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/QVariant \
  C:/qt/6.11.0/mingw_64/include/QtWidgets/QApplication \
@@ -417,6 +418,26 @@ CMakeFiles/solar_energy.dir/my_project.cpp.obj: \
  C:/qt/6.11.0/mingw_64/include/QtGui/qtextformat.h \
  C:/qt/6.11.0/mingw_64/include/QtGui/qpen.h \
  C:/qt/6.11.0/mingw_64/include/QtGui/qtextoption.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/QListWidget \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qlistwidget.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qlistview.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qabstractitemview.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qabstractitemmodel.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qitemselectionmodel.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qstyleoption.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qabstractspinbox.h \
+ C:/qt/6.11.0/mingw_64/include/QtGui/qvalidator.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qregularexpression.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qslider.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qabstractslider.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qstyle.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qtabbar.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qtabwidget.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qrubberband.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/QProgressBar \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qprogressbar.h \
  C:/qt/6.11.0/mingw_64/include/QtWidgets/QPushButton \
  C:/qt/6.11.0/mingw_64/include/QtWidgets/qpushbutton.h \
  C:/qt/6.11.0/mingw_64/include/QtWidgets/qabstractbutton.h \
@@ -427,9 +448,19 @@ CMakeFiles/solar_energy.dir/my_project.cpp.obj: \
  C:/qt/6.11.0/mingw_64/include/QtWidgets/qmessagebox.h \
  C:/qt/6.11.0/mingw_64/include/QtWidgets/qdialog.h \
  C:/qt/6.11.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/QThread \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qthread.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/future \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/condition_variable \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_futex.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h \
  S:\sp\ project\solar_energy\filehandling.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
+ S:\sp\ project\solar_energy\report.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ios \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.h \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.h \
@@ -439,10 +470,6 @@ CMakeFiles/solar_energy.dir/my_project.cpp.obj: \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.tcc \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.tcc \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/codecvt.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fstream.tcc
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc

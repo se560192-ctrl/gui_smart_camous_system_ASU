@@ -1,5 +1,6 @@
 S:/sp\ project/solar_energy/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/solar_energy_autogen/EWIEGA46WW/moc_my_project.cpp: S:/sp\ project/solar_energy/my_project.h \
   S:/sp\ project/solar_energy/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debug/solar_energy_autogen/moc_predefs.h \
+  C:/qt/6.11.0/mingw_64/include/QtCore/Qstring \
   C:/qt/6.11.0/mingw_64/include/QtCore/q17memory.h \
   C:/qt/6.11.0/mingw_64/include/QtCore/q20bit.h \
   C:/qt/6.11.0/mingw_64/include/QtCore/q20functional.h \

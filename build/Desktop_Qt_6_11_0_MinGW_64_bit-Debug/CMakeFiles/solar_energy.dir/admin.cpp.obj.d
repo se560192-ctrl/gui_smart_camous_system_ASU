@@ -145,11 +145,9 @@ CMakeFiles/solar_energy.dir/admin.cpp.obj: \
  S:\sp\ project\solar_energy\building.h \
  S:\sp\ project\solar_energy\alert.h \
  S:\sp\ project\solar_energy\reading.h \
- S:\sp\ project\solar_energy\admin.h \
- C:/qt/6.11.0/mingw_64/include/QtWidgets/QMessageBox \
- C:/qt/6.11.0/mingw_64/include/QtWidgets/qmessagebox.h \
- C:/qt/6.11.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
- C:/qt/6.11.0/mingw_64/include/QtGui/qtguiglobal.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/Qstring \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qstring.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qchar.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qglobal.h \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/utility \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h \
@@ -237,15 +235,6 @@ CMakeFiles/solar_energy.dir/admin.cpp.obj: \
  C:/qt/6.11.0/mingw_64/include/QtCore/qtresource.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qttranslation.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qversiontagging.h \
- C:/qt/6.11.0/mingw_64/include/QtGui/qtgui-config.h \
- C:/qt/6.11.0/mingw_64/include/QtGui/qtguiexports.h \
- C:/qt/6.11.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
- C:/qt/6.11.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \
- C:/qt/6.11.0/mingw_64/include/QtWidgets/qdialog.h \
- C:/qt/6.11.0/mingw_64/include/QtWidgets/qwidget.h \
- C:/qt/6.11.0/mingw_64/include/QtGui/qwindowdefs.h \
- C:/qt/6.11.0/mingw_64/include/QtCore/qobjectdefs.h \
- C:/qt/6.11.0/mingw_64/include/QtCore/qnamespace.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qcompare.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qstdlibdetection.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qcomparehelpers.h \
@@ -264,27 +253,11 @@ CMakeFiles/solar_energy.dir/admin.cpp.obj: \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/array \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/compare \
- C:/qt/6.11.0/mingw_64/include/QtCore/qtmetamacros.h \
- C:/qt/6.11.0/mingw_64/include/QtCore/qobjectdefs_impl.h \
- C:/qt/6.11.0/mingw_64/include/QtCore/qfunctionaltools_impl.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_raw_storage_iter.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/align.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_base.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/concurrence.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_atomic.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/auto_ptr.h \
- C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_memory_defs.h \
- C:/qt/6.11.0/mingw_64/include/QtGui/qwindowdefs_win.h \
- C:/qt/6.11.0/mingw_64/include/QtCore/qobject.h \
- C:/qt/6.11.0/mingw_64/include/QtCore/qstring.h \
- C:/qt/6.11.0/mingw_64/include/QtCore/qchar.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qstringview.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qbytearray.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qrefcount.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qnamespace.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qtmetamacros.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qarraydata.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qpair.h \
  C:/qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/string.h \
@@ -297,6 +270,17 @@ CMakeFiles/solar_energy.dir/admin.cpp.obj: \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstring \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stream_iterator.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_raw_storage_iter.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/align.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_base.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/concurrence.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_atomic.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/auto_ptr.h \
+ C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_memory_defs.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/q20functional.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/q20memory.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/q17memory.h \
@@ -314,6 +298,23 @@ CMakeFiles/solar_energy.dir/admin.cpp.obj: \
  C:/qt/6.11.0/mingw_64/include/QtCore/qstringbuilder.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qstringconverter.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qstringconverter_base.h \
+ S:\sp\ project\solar_energy\admin.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/QMessageBox \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qmessagebox.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+ C:/qt/6.11.0/mingw_64/include/QtGui/qtguiglobal.h \
+ C:/qt/6.11.0/mingw_64/include/QtGui/qtgui-config.h \
+ C:/qt/6.11.0/mingw_64/include/QtGui/qtguiexports.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qdialog.h \
+ C:/qt/6.11.0/mingw_64/include/QtWidgets/qwidget.h \
+ C:/qt/6.11.0/mingw_64/include/QtGui/qwindowdefs.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qobjectdefs.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qobjectdefs_impl.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qfunctionaltools_impl.h \
+ C:/qt/6.11.0/mingw_64/include/QtGui/qwindowdefs_win.h \
+ C:/qt/6.11.0/mingw_64/include/QtCore/qobject.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qlist.h \
  C:/qt/6.11.0/mingw_64/include/QtCore/qhashfunctions.h \
  C:/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric \
