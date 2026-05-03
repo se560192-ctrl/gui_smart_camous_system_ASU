@@ -2,6 +2,7 @@
 #include "ui_my_project.h"
 #include <QMessageBox>
 #include <QThread>
+#include <QCloseEvent>
 #include "building.h"
 #include "reading.h"
 #include "alert.h"
@@ -83,7 +84,6 @@ void my_project::on_confirm_botton_clicked()
 
     if (success) {
         // لو نجح، سيف وطلع رسالة وانقله
-       saveData(buildings, building_counter, readings, reading_counter, alerts, alert_counter, admins, current_admin_numbers);
         QMessageBox::information(this, "Success", "Admin added successfully!");
         ui->stackedWidget->setCurrentIndex(login_page);// هنا هنقله للوجبن فانكشن علشان يدخل البيانات
     } else {
@@ -136,6 +136,10 @@ void my_project::on_BACK_MENU_clicked()
 
 void my_project::on_CONFIRM_NER_clicked() // ADD NEW READING AFTER FINDING BUILDING
 {
+    if (ui->READING_MONTH->text().isEmpty() || ui->READING_VALUE->text().isEmpty()) {
+        QMessageBox::warning(this, "Input Error", "Month and Reading Value cannot be empty! ⚠️");
+        return;
+    }
         // نسحبة من نفس المكان بتاع اول مرة
         int id = ui->BID_ANER->text().toInt();
         string name = ui->BNAME_ANER->text().toStdString();
@@ -145,15 +149,41 @@ void my_project::on_CONFIRM_NER_clicked() // ADD NEW READING AFTER FINDING BUILD
         float val = ui->READING_VALUE->text().toFloat();
 
         // نعمل كول للفانكشن
-        AddEnergyReading(buildings, building_counter, readings, reading_counter,
+       bool hasAlert = AddEnergyReading(buildings, building_counter, readings, reading_counter,
                          alerts, alert_counter, numberOfUnresolvedAlerts,
                          id, name, month, val);
-        // 3. رسالة نجاح وحفظ
-        QMessageBox::information(this, "Success", "Reading Added!");
-        saveData(buildings, building_counter, readings, reading_counter,
-                 alerts, alert_counter, admins, current_admin_numbers);
+        // بعد سطر AddEnergyReading...
 
+       if (hasAlert) {
+           float buildingLimit = 0;
+
+           // بندور على المبنى في الـ Array عشان نجيب الليميت بتاعه
+           for (int j = 0; j < building_counter; j++) {
+               if (buildings[j].ID == id) {
+                   buildingLimit = buildings[j].Monthly_Limit;
+                   break;
+               }
+           }
+
+           float overUsage = val - buildingLimit; // هنا الـ 300 هتتحسب صح
+
+           QMessageBox::critical(this, "⚠️ ALERT!",
+                                 QString("Warning! Building %1 has exceeded its limit!\n\n"
+                                         "Current Reading: %2\n"
+                                         "Monthly Limit: %3\n"
+                                         "Over-consumption Amount: %4")
+                                     .arg(QString::fromStdString(name))
+                                     .arg(val)
+                                     .arg(buildingLimit)
+                                     .arg(overUsage));
+       } // ده قوس نهاية الـ if (hasAlert) اللي في سطر 179
+else {
+    // الرسالة دي هتظهر لو القراءة سليمة (أقل من الليميت)
+    QMessageBox::information(this, "Reading Added",
+                             QString("Energy reading for %1 has been recorded successfully! ✅")
+                                 .arg(QString::fromStdString(name)));
 }
+} // ده قوس نهاية الـ on_CONFIRM_NER_clicked
 
 
 void my_project::on_BACK_MENU_ANER2_clicked()
@@ -170,6 +200,12 @@ ui->stackedWidget->setCurrentIndex(BUILDING_MENU);
 
 void my_project::on_Add_building_confirm_clicked()
 {
+    if (ui->id_input->text().isEmpty() || ui->name_input->text().isEmpty() ||
+        ui->type_input->text().isEmpty() || ui->limit_input->text().isEmpty())
+    {
+        QMessageBox::warning(this, "Input Error", "All fields are required to add a new building! ⚠️");
+        return; // اخرج وم تكملش إضافة
+    }
     // سحب البيانات من الشاشة
     int id = ui->id_input->text().toInt();
     string name = ui->name_input->text().toStdString();
@@ -178,10 +214,6 @@ void my_project::on_Add_building_confirm_clicked()
 
     // نداء الفانكشن الشبيهة بكودك القديم
     AddBuildingGUI(buildings, building_counter, id, name, type, limit);
-
-    // حفظ في الملف (مهم جداً)
-    saveData(buildings, building_counter, readings, reading_counter,
-             alerts, alert_counter, admins, current_admin_numbers);
 }
 
 
@@ -255,7 +287,7 @@ void my_project::on_START_CALCULATION_BTN_clicked()
 
         // 2. نداء الفانكشن الاصلية وبعد ما تخلص يعمل سيف علشان يسمع في الملف بتاع الفايل هاندلينج
         calculateEfficiencyScore(buildings, building_counter);
-        saveData(buildings, building_counter, readings, reading_counter, alerts, alert_counter, admins, current_admin_numbers);
+
 
         // 3. حركة وهمية علشان البروجرس بار يتملي واحده واحده واليوزر يشوفه
         for(int i = 0; i <= 100; i++) {
@@ -334,8 +366,6 @@ void my_project::on_generate_alerts_btn_clicked()
         }
     }
 
-    // 3. احفظي الداتا الجديدة النظيفة في الملف
-    saveData(buildings, building_counter, readings, reading_counter, alerts, alert_counter, admins, current_admin_numbers);
 
     if (created > 0) {
         QMessageBox::information(this, "Success", QString("Done! %1 alerts generated.").arg(created));
@@ -394,9 +424,6 @@ void my_project::on_resolve_alert_btn_clicked()
         QMessageBox::information(this, "Success", "Alert #" + QString::number(alertID) + " has been resolved! ✅");
         numberOfResolvedAlerts++;
         numberOfUnresolvedAlerts--;
-        // السطر السحري: نادي فانكشن الحفظ اللي إنتي لسه بعتاها
-        // ابعتي لها كل المصفوفات والكونترز اللي هي محتاجاها
-        saveData(buildings, building_counter, readings, reading_counter, alerts, alert_counter, admins, current_admin_numbers);
         // 5. تحديث اللستة فوراً عشان السطر يختفي أو يتغير حالته
         on_view_unresolverd_alerts_clicked();
     }
@@ -412,7 +439,7 @@ void my_project::on_generate_montly_report_btn_clicked()
         if (alerts[i].status == "Resolved")
             numberOfResolvedAlerts++;
         else if (alerts[i].status == "Unresolved")
-            numberOfUnresolvedAlerts--;
+            numberOfUnresolvedAlerts++;
     }
         // 1. حساب القيم باستخدام الفانكشنز اللي عدلناها
         float totalConsumption = calculateTotalCampusConsumption(buildings, building_counter);
@@ -445,3 +472,15 @@ void my_project::on_generate_montly_report_btn_clicked()
 
 }
 
+
+void my_project::on_BACK_FROM_DISPLAY_clicked()
+{
+     ui->stackedWidget->setCurrentIndex(MAIN_MENU);
+}
+
+void my_project::closeEvent(QCloseEvent *event) {
+    // نستخدم المتغيرات اللي متعرفة جوه الكلاس (الأسماء اللي بالأسود في الصورة اللي فاتت)
+    saveData(buildings, building_counter, readings, reading_counter, alerts, alert_counter, admins, current_admin_numbers);
+
+    event->accept();
+}

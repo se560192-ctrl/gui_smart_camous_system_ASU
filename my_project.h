@@ -90,6 +90,8 @@ private slots:
 
     void on_generate_montly_report_btn_clicked();
 
+    void on_BACK_FROM_DISPLAY_clicked();
+
 private:
     Ui::my_project *ui;
     Admin admins[5];
@@ -109,5 +111,8 @@ private:
     // المتغيرات اللي كنا بنقول عليها عشان "تسمع" بين الزراير
     int saved_building_id = -1;
     string saved_building_name = "";
+
+protected:
+void closeEvent(QCloseEvent *event) override;
 };
 #endif // MY_PROJECT_H

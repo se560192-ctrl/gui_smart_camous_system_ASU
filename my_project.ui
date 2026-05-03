@@ -12,7 +12,8 @@
   </property>
   <property name="font">
    <font>
-    <pointsize>10</pointsize>
+    <pointsize>14</pointsize>
+    <bold>true</bold>
    </font>
   </property>
   <property name="cursor">
@@ -226,8 +227,8 @@
     <widget class="QPushButton" name="Search_building">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>370</y>
+       <x>300</x>
+       <y>310</y>
        <width>211</width>
        <height>71</height>
       </rect>
@@ -240,6 +241,25 @@
      </property>
      <property name="text">
       <string>SEARCH</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BACK_FROM_DISPLAY">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>420</y>
+       <width>211</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>BACK</string>
      </property>
     </widget>
    </widget>
@@ -830,6 +850,7 @@
      </property>
      <property name="font">
       <font>
+       <pointsize>10</pointsize>
        <bold>true</bold>
       </font>
      </property>

@@ -16,9 +16,6 @@ int main(int argc, char *argv[])
     Admin admins[100];
     int current_admin_numbers = 0;
 
-    // 3. نادي على اللود هنا (دي أهم خطوة في حياتنا دلوقتي)
-    loadFiles(buildings, building_counter, Readings, reading_counter, alerts, alert_counter, admins, current_admin_numbers);
-
     my_project w;
     w.show();
     return a.exec();
