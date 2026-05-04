@@ -5,47 +5,53 @@
 #include "reading.h"
 using namespace std;
 // define function to check limit  ---> amal
-void check_alert_generate(building buildings[], int& building_counter, EnergyReading readings[], int reading_counter, Alert alerts[], int& alert_counter, int& numberOfUnresolvedAlerts) {
+void check_alert_generate(building buildings[], int building_counter, EnergyReading readings[], int reading_counter, Alert alerts[], int& alert_counter, int& numberOfUnresolvedAlerts) {
+
     for (int i = 0; i < reading_counter; i++) {
         for (int j = 0; j < building_counter; j++) {
-            // 1. لو القراءة تبع المبنى ده ومعدية الليميت
-            if (readings[i].BuildingID == buildings[j].ID) {
-                if (readings[i].consumption_value > buildings[j].Monthly_Limit) {
 
-                    // 2. بنشيك هل المبنى ده طلعله Alert في الشهر ده قبل كدة؟
-                    bool alreadyExists = false;
-                    for (int k = 0; k < alert_counter; k++) {
-                        if (alerts[k].BuildingID == readings[i].BuildingID &&
-                            alerts[k].month == readings[i].month) {
-                            alreadyExists = true;
-                            break;
-                        }
-                    }
+            // لو الاستهلاك عالي، بننادي الفانكشن التانية وهي اللي تشيك براحتها
+            if (readings[i].BuildingID == buildings[j].ID && readings[i].consumption_value > buildings[j].Monthly_Limit) {
 
-                    // 3. لو مش موجود، كريت واحد جديد
-                    if (!alreadyExists) {
-                        generate_alert_for_over_usage(readings[i].consumption_value, buildings[j].Monthly_Limit, buildings[j].Name, buildings[j].ID, readings[i].month, alerts, alert_counter, numberOfUnresolvedAlerts);
-                    }
-                }
+                generate_alert_for_over_usage(
+                    readings[i].consumption_value,
+                    buildings[j].Monthly_Limit,
+                    buildings[j].Name,
+                    buildings[j].ID,
+                    readings[i].month,
+                    alerts,
+                    alert_counter,
+                    numberOfUnresolvedAlerts
+                    );
             }
         }
     }
 }
 // define function to generate alert for over usage
 void generate_alert_for_over_usage(float consumption_value, float Monthly_Limit, string building_name, int building_id, string month, Alert alerts[], int& alert_counter, int& numberOfUnresolvedAlerts) {
+
     float overusage = consumption_value - Monthly_Limit;
 
-    // تخزين البيانات في المصفوفة (Logic فقط)
-    alerts[alert_counter].AlertID = alert_counter + 1;
-    alerts[alert_counter].BuildingID = building_id;
-    alerts[alert_counter].over_usage_amount = overusage;
-    alerts[alert_counter].month = month;
-    alerts[alert_counter].status = "Unresolved";
+    // الـ bool اللي إنتي عايزاه يكون هنا مش في الـ check
+    bool alreadyExists = false;
+    for (int i = 0; i < alert_counter; i++) {
+        if (alerts[i].month == month && alerts[i].BuildingID == building_id && overusage == alerts[i].over_usage_amount) {
+            alreadyExists = true;
+            break;
+        }
+    }
 
-    alert_counter++;
-    numberOfUnresolvedAlerts++;
+    // لو فعلاً مش موجود (يعني alreadyExists لسه false)
+    if (!alreadyExists) {
+        alerts[alert_counter].AlertID = alert_counter + 1;
+        alerts[alert_counter].BuildingID = building_id;
+        alerts[alert_counter].over_usage_amount = overusage;
+        alerts[alert_counter].month = month;
+        alerts[alert_counter].status = "Unresolved";
 
-	
+        alert_counter++;
+        numberOfUnresolvedAlerts++;
+    }
 }
 
 // define function to resolve alert ---> judy

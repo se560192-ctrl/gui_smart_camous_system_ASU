@@ -417,34 +417,17 @@ void my_project::on_BACK_MENU_ANER2_clicked()
 //-----------START GENERATE ALERT PROCES-------------
 
 void my_project::on_generate_alerts_btn_clicked()
-{// 1. مفيش تصفير للعدادات هنا خالص عشان نحافظ على القديم
-    // السطر ده هو اللي ناقصك عشان الـ Error يختفي
-    int alertsBefore = alert_counter;
-    // 2. بننادي الفانكشن اللي عملناها في alert.cpp
-    // الفانكشن دي جواها الـ Loop والـ "alreadyExists" تشيك وكل حاجة
-    check_alert_generate(
-        buildings,
-        building_counter,
-        readings,
-        reading_counter,
-        alerts,
-        alert_counter,
-        numberOfUnresolvedAlerts
-        );
+{
+    int before = alert_counter;
 
-    // بنحسب الفرق عشان نعرف كام Alert جديد اتضاف فعلياً
-    int newAlertsCount = alert_counter - alertsBefore;
+    check_alert_generate(buildings, building_counter, readings, reading_counter, alerts, alert_counter, numberOfUnresolvedAlerts);
 
-    // رسالة احترافية ومريحة لليوزر
-    if (newAlertsCount > 0) {
-        QMessageBox::information(this,
-                                 "System Audit Complete",
-                                 "💡 Analysis finished!\n\n" +
-                                     QString::number(newAlertsCount) + " new energy alerts have been identified and added to your dashboard.");
+    int added = alert_counter - before;
+
+    if (added > 0) {
+        QMessageBox::information(this, "Done", "Added " + QString::number(added) + " new alerts.");
     } else {
-        QMessageBox::information(this,
-                                 "System Audit Complete",
-                                 "✅ All systems normal.\n\nNo new over-consumption patterns detected at this time.");
+        QMessageBox::information(this, "System Clean", "No new alerts found or everything is already reported.");
     }
 }
 //----------------END OF GENERATE ALERT PROCES-----------------
