@@ -1,4 +1,5 @@
 #include<string>
+#include<QMessageBox>
 #include "building.h"
 #include"reading.h"
 #include "alert.h"
@@ -37,6 +38,9 @@ bool AddEnergyReading(building buildings[], int& building_counter, EnergyReading
             }
         }
     }
-
+    else {
+        // الـ else اللي إنتي عايزاها
+        QMessageBox::warning(nullptr, "Full Database", "Cannot add new reading! The system limit (30 readings) has been reached.");
+    }
     return alertGenerated;
 }

@@ -41,14 +41,14 @@ void my_project::on_login_btn_clicked()
     QString user = ui->user_input->text();
     QString pass = ui->password_input->text();
 
-    // 1. نسحب البيانات من الشاشة
+    //  نسحب البيانات من الشاشة
     string u = ui->user_input->text().toStdString();
     string p = ui->password_input->text().toStdString();
 
-    // 2.  ننادي هنا الفانكشن بتاعت ال admin login
+    //  ننادي هنا الفانكشن بتاعت ال admin login
     bool found = Admin_login(admins, current_admin_numbers, u, p);
 
-    // 3. ناخد النتيجة ونقرر هنعمل إيه في الشاشة
+    //  ناخد النتيجة ونقرر هنعمل إيه في الشاشة
     if (found) {
         ui->user_input->clear();
         ui->password_input->clear();
