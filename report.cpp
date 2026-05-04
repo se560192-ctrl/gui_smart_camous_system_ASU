@@ -35,7 +35,10 @@ string generateMonthlyCampusReport(building buildings[],
                     currentBuildingName = buildings[j].Name;
                     for (int k = 0; k < building_counter; k++) {
                         if (buildings[k].Name == currentBuildingName) {
-                            curr_efficiency_score = ((buildings[k].Monthly_Limit - readings[i].consumption_value) * 100) / buildings[k].Monthly_Limit;
+                            curr_efficiency_score = ((buildings[k].Monthly_Limit
+                                                      - readings[i].consumption_value)
+                                                     * 100)
+                                                    / buildings[k].Monthly_Limit;
                         }
                     }
                     break;
@@ -48,8 +51,7 @@ string generateMonthlyCampusReport(building buildings[],
                 most_efficient_building = currentBuildingName;
                 least_efficient_building = currentBuildingName;
                 first_record = false;
-            }
-            else {
+            } else {
                 if (curr_efficiency_score < min_consumption) {
                     min_consumption = curr_efficiency_score;
                     least_efficient_building = currentBuildingName;
