@@ -418,17 +418,32 @@ void my_project::on_BACK_MENU_ANER2_clicked()
 
 void my_project::on_generate_alerts_btn_clicked()
 {
-    int before = alert_counter;
-
+    // 1. نادي الفانكشن اللي بتعمل مسح شامل وتضيف الجديد
     check_alert_generate(buildings, building_counter, readings, reading_counter, alerts, alert_counter, numberOfUnresolvedAlerts);
 
-    int added = alert_counter - before;
+    // 2. نحسب عدد الـ Resolved (الحسابي)
+    // بما إننا عندنا الإجمالي وعندنا الـ Unresolved، يبقى الفرق هو الـ Resolved
+    int resolvedCount = alert_counter - numberOfUnresolvedAlerts;
 
-    if (added > 0) {
-        QMessageBox::information(this, "Done", "Added " + QString::number(added) + " new alerts.");
+    // 3. نجهز رسالة التقرير الشامل
+    QString report = "📊 --- System Alerts Report --- 📊\n\n";
+    report += "✅ Total Alerts in System: " + QString::number(alert_counter) + "\n";
+    report += "🔴 Unresolved Alerts: " + QString::number(numberOfUnresolvedAlerts) + "\n";
+    report += "🟢 Resolved Alerts: " + QString::number(resolvedCount) + "\n\n";
+
+    // 4. لو فيه تنبيهات، نعرض الـ IDs بتاعتها (أو آخر IDs لو العدد كبير)
+    if (alert_counter > 0) {
+        report += "🆔 Alert IDs currently active: ";
+        for (int i = 0; i < alert_counter; i++) {
+            report += QString::number(alerts[i].AlertID);
+            if (i < alert_counter - 1) report += ", "; // فاصل بين الأرقام
+        }
     } else {
-        QMessageBox::information(this, "System Clean", "No new alerts found or everything is already reported.");
+        report += "No alerts have been generated yet.";
     }
+
+    // 5. إظهار البوكس النهائي لليوزر
+    QMessageBox::information(this, "Audit & Statistics", report);
 }
 //----------------END OF GENERATE ALERT PROCES-----------------
 
