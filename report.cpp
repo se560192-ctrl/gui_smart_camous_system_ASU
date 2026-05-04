@@ -6,8 +6,14 @@ using namespace std;
 
 // define any functions related to generating reports in this file ---> Eman
 
-string generateMonthlyCampusReport(building buildings[], int building_counter, EnergyReading readings[], int reading_counter, Alert alerts[], int alert_counter, string targetMonth) {
-
+string generateMonthlyCampusReport(building buildings[],
+                                   int building_counter,
+                                   EnergyReading readings[],
+                                   int reading_counter,
+                                   Alert alerts[],
+                                   int alert_counter,
+                                   string targetMonth)
+{
     float total_consumption = 0;
     string most_efficient_building = "N/A";
     string least_efficient_building = "N/A";
@@ -21,28 +27,36 @@ string generateMonthlyCampusReport(building buildings[], int building_counter, E
             total_consumption += readings[i].consumption_value;
 
             // بنجيب اسم المبنى من مصفوفة الـ buildings باستخدام الـ BuildingID
+            float curr_efficiency_score = 0.0;
             string currentBuildingName = "Unknown";
-            for(int j = 0; j < building_counter; j++) {
-                if(buildings[j].ID == readings[i].BuildingID) { // تأكدي إن المتغير اسمه ID أو حسب ما هو في building.h
+            for (int j = 0; j < building_counter; j++) {
+                if (buildings[j].ID
+                    == readings[i].BuildingID) { // تأكدي إن المتغير اسمه ID أو حسب ما هو في building.h
                     currentBuildingName = buildings[j].Name;
+                    for (int k = 0; k < building_counter; k++) {
+                        if (buildings[k].Name == currentBuildingName) {
+                            curr_efficiency_score = ((buildings[k].Monthly_Limit - readings[i].consumption_value) * 100) / buildings[k].Monthly_Limit;
+                        }
+                    }
                     break;
                 }
             }
 
             if (first_record) {
-                min_consumption = readings[i].consumption_value;
-                max_consumption = readings[i].consumption_value;
+                min_consumption = curr_efficiency_score;
+                max_consumption = curr_efficiency_score;
                 most_efficient_building = currentBuildingName;
                 least_efficient_building = currentBuildingName;
                 first_record = false;
-            } else {
-                if (readings[i].consumption_value < min_consumption) {
-                    min_consumption = readings[i].consumption_value;
-                    most_efficient_building = currentBuildingName;
-                }
-                if (readings[i].consumption_value > max_consumption) {
-                    max_consumption = readings[i].consumption_value;
+            }
+            else {
+                if (curr_efficiency_score < min_consumption) {
+                    min_consumption = curr_efficiency_score;
                     least_efficient_building = currentBuildingName;
+                }
+                if (curr_efficiency_score > max_consumption) {
+                    max_consumption = curr_efficiency_score;
+                    most_efficient_building = currentBuildingName;
                 }
             }
         }
@@ -52,8 +66,10 @@ string generateMonthlyCampusReport(building buildings[], int building_counter, E
     int unresolved = 0, resolved = 0;
     for (int i = 0; i < alert_counter; i++) {
         if (alerts[i].month == targetMonth) {
-            if (alerts[i].status == "Resolved") resolved++;
-            else unresolved++;
+            if (alerts[i].status == "Resolved")
+                resolved++;
+            else
+                unresolved++;
         }
     }
 

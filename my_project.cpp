@@ -218,7 +218,7 @@ void my_project::on_Search_building_clicked()
         // لو موجود، املأ البيانات وانقل الصفحة
         ui->label_id->setText(QString::number(buildings[index].ID));
         ui->label_name->setText(QString::fromStdString(buildings[index].Name));
-        ui->label_type->setText(QString::fromStdString(buildings[index].type));
+        ui->label_type->setText(QString::fromStdString(buildings[index].Type));
         ui->label_limit->setText(QString::number(buildings[index].Monthly_Limit));
         ui->label_consumption->setText(QString::number(buildings[index].Total_consumption));
         ui->label_score->setText(QString::number(buildings[index].Efficiency_Score) + "%");
@@ -526,30 +526,34 @@ void my_project::on_calculate_effieciancy_score_btn_clicked()
 
 void my_project::on_START_CALCULATION_BTN_clicked()
 {
+    // 1. تصفير البروجرس بار في البداية
+    bool ok;
+    QString targetMonth = QInputDialog::getText(this, "Calculate Efficiency",
+                                                "Enter Month Name:", QLineEdit::Normal,
+                                                "", &ok);
 
-        // 1. تصفير البروجرس بار في البداية
-        ui->progressBar_calc->setValue(0);
+    if (!ok || targetMonth.isEmpty()) return;
+    string monthStr = targetMonth.toStdString();
+    ui->progressBar_calc->setValue(0);
 
-        // 2. نداء الفانكشن الاصلية وبعد ما تخلص يعمل سيف علشان يسمع في الملف بتاع الفايل هاندلينج
-        calculateEfficiencyScore(buildings, building_counter);
+    // 2. نداء الفانكشن الاصلية وبعد ما تخلص يعمل سيف علشان يسمع في الملف بتاع الفايل هاندلينج
+    calculateEfficiencyScore(buildings, building_counter,readings,reading_counter,monthStr);
 
+    // 3. حركة وهمية علشان البروجرس بار يتملي واحده واحده واليوزر يشوفه
+    for (int i = 0; i <= 100; i++) {
+        ui->progressBar_calc->setValue(i);
+        // السطر ده علشان يشتغل ببطئ
+        QThread::msleep(20);
+        // السطر ده علشان ميهنجش
+        QCoreApplication::processEvents();
+    }
 
-        // 3. حركة وهمية علشان البروجرس بار يتملي واحده واحده واليوزر يشوفه
-        for(int i = 0; i <= 100; i++) {
-            ui->progressBar_calc->setValue(i);
-            // السطر ده علشان يشتغل ببطئ
-            QThread::msleep(20);
-            // السطر ده علشان ميهنجش
-            QCoreApplication::processEvents();
-        }
+    // 4. تحديث الـ Status Label
+    ui->CALC_LABEL->setText("Last calculated: " + targetMonth + " (Success ✅)");
+    ui->CALC_LABEL->setStyleSheet("color: #2e7d32; font-style: italic;");
 
-        // 4. تحديث الـ Status Label
-        ui->CALC_LABEL->setText("Last calculated: Just now (Success ✅)");
-        ui->CALC_LABEL->setStyleSheet("color: #2e7d32; font-style: italic;");
-
-        // 5. رسالة التأكيد النهائية
-        QMessageBox::information(this, "Success", "Calculate Efficiency Score Completed Successfully!");
-
+    // 5. رسالة التأكيد النهائية
+    QMessageBox::information(this, "Success", "Efficiency Score for " + targetMonth + " Completed Successfully!");
 }
 
 

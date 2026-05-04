@@ -31,7 +31,7 @@ void loadFiles(building buildings[], int &building_counter, EnergyReading Readin
         read >> buildings[i].ID;
         read >> ws;
         getline(read, buildings[i].Name);
-        getline(read, buildings[i].type);
+        getline(read, buildings[i].Type);
         read >> buildings[i].Monthly_Limit >> buildings[i].Total_consumption >> buildings[i].Efficiency_Score;
     }
 
@@ -63,7 +63,7 @@ saveFile << building_counter << endl;
             for (int i = 0; i < building_counter; i++) {
                 saveFile << buildings[i].ID << endl;;
                 saveFile << buildings[i].Name << endl;
-                saveFile << buildings[i].type << endl;
+                saveFile << buildings[i].Type << endl;
                 saveFile << buildings[i].Monthly_Limit << " " << buildings[i].Total_consumption << " " << buildings[i].Efficiency_Score << endl;
 
             }

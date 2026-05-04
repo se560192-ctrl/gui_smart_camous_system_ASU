@@ -4,17 +4,24 @@
 #include <QMessageBox>
 using namespace std;
 // define function to calculate efficiency score --> sondus
-void calculateEfficiencyScore(building buildings[],int building_counter) {
-	for (int i = 0; i < building_counter; i++) {
-		if (buildings[i].Monthly_Limit > 0) {
+void calculateEfficiencyScore(building buildings[], int building_counter,EnergyReading readings[],int reading_counter,string targetmonth )
+{
+    for(int i=0;i<building_counter;i++){
+        float cons_for_month=0.0;
+        for (int j = 0; j < reading_counter; j++) {
+            if (readings[j].BuildingID == buildings[i].ID && readings[j].month == targetmonth) {
+                cons_for_month = readings[j].consumption_value;
+                break;
+            }
+        }
+        if (buildings[i].Monthly_Limit > 0) {
+            buildings[i].Efficiency_Score = ((buildings[i].Monthly_Limit -cons_for_month )
+                                             / buildings[i].Monthly_Limit) * 100.0;
+        } else {
+            buildings[i].Efficiency_Score = 0; // لو مفيش قراءة للشهر ده
+        }
 
-            buildings[i].Efficiency_Score = (buildings[i].Monthly_Limit - buildings[i].Total_consumption) * 100.0 / buildings[i].Monthly_Limit;
-		}
-		else {
-			buildings[i].Efficiency_Score = 0;
-		}
-	}
-
+    }
 }
 
 //define function to add new building ---> basmala
@@ -42,7 +49,7 @@ void AddBuildingGUI(building buildings[], int& building_counter, int id, string 
         // 3. التخزين (نفس الطريقة)
         buildings[building_counter].ID = id;
         buildings[building_counter].Name = name;
-        buildings[building_counter].type = type;
+        buildings[building_counter].Type = type;
         buildings[building_counter].Monthly_Limit = limit;
         buildings[building_counter].Total_consumption = 0.0;
         buildings[building_counter].Efficiency_Score = 100.0;
