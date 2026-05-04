@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QThread>
 #include <QCloseEvent>
+#include <QInputDialog>
 #include "building.h"
 #include "reading.h"
 #include "alert.h"
@@ -16,7 +17,8 @@ my_project::my_project(QWidget *parent)
    loadFiles(buildings, building_counter, readings, reading_counter, alerts, alert_counter, admins, current_admin_numbers);
 
 
-    // هنا بنخليه يبدا من صفحة ال welcome
+   //----------------------------GO TO WELCOME PAGE------------------------
+
    ui->stackedWidget->setCurrentIndex(WELCOME_PAGE);
 
 }
@@ -25,11 +27,13 @@ my_project::~my_project()
 {
     delete ui;
 }
+   //---------------------START OF LOGIN PROCES-------------------------
 
 void my_project::on_monitoring_btn_clicked()
-{ //هنا بنقله login page
+{
  ui->stackedWidget->setCurrentIndex(login_page);
 }
+
 
 
 void my_project::on_login_btn_clicked()
@@ -46,6 +50,8 @@ void my_project::on_login_btn_clicked()
 
     // 3. ناخد النتيجة ونقرر هنعمل إيه في الشاشة
     if (found) {
+        ui->user_input->clear();
+        ui->password_input->clear();
         ui->stackedWidget->setCurrentIndex(MAIN_MENU); // هنا بنقله لل main menu
     } else {
         ui->valid_massage->setText("Invalid Username or Password!");
@@ -54,7 +60,7 @@ void my_project::on_login_btn_clicked()
 }
 
 
-
+   // -----------START OF ADD NEW ADMIN PROCES---------------
 
 
 void my_project::on_newadmin_btn_clicked()
@@ -85,6 +91,8 @@ void my_project::on_confirm_botton_clicked()
     if (success) {
         // لو نجح، سيف وطلع رسالة وانقله
         QMessageBox::information(this, "Success", "Admin added successfully!");
+        ui->new_userLine->clear();
+        ui->new_passwordLine->clear();
         ui->stackedWidget->setCurrentIndex(login_page);// هنا هنقله للوجبن فانكشن علشان يدخل البيانات
     } else {
         // لو فشل (يعني العداد وصل لـ 5)
@@ -94,117 +102,71 @@ void my_project::on_confirm_botton_clicked()
 
 }
 
-// ADD NEW ENERGY READING PROGRESS
-void my_project::on_new_energy_reading_btn_clicked()
+//----------------------- END OF SIGN UP & LOGIN PROCESES------------------------------
+
+
+
+// --------------START OF DISPLAY & ADD BUILDING INFORMATION-----------------------
+
+void my_project::on_display_information_btn_clicked() // الي موجود في ال MAIN MENU
 {
-     ui->stackedWidget->setCurrentIndex(Building_VALIDATION);
+    ui->stackedWidget->setCurrentIndex(BUILDING_MENU);
 }
 
 
-void my_project::on_CON_N_ID_ANER_clicked() // BUILDING VALIDATION
+// ****START OF ADD NEW BUILDING PROCESS******
+
+
+void my_project::on_Add_new_building_btn_clicked()
 {
-    int inputID = ui->BID_ANER->text().toInt();
-    string inputName = ui->BNAME_ANER->text().toStdString();
-
-    bool building_found = false;
-
-    // هندور على ال BUILDING في ال ARRAY
-    for (int i = 0; i < building_counter; i++) {
-        if (buildings[i].ID == inputID && buildings[i].Name == inputName) {
-            building_found = true;
-            break;
-        }
-    }
-
-    // 3. اتخاذ قرار بناءً على النتيجة
-    if (building_found) {
-        // لو المبنى موجود بيدخل يدخل قراءة
-        ui->stackedWidget->setCurrentIndex(ADD_READING_DATA);
-    }
-    else {
-        // لو ملقاش المبنى
-        QMessageBox::critical(this, "Error", "Building not found! Please check the ID and Name.");
-    }
-}
-
-
-void my_project::on_BACK_MENU_clicked()
-{
-     ui->stackedWidget->setCurrentIndex(MAIN_MENU);
-}
-
-
-void my_project::on_CONFIRM_NER_clicked() // ADD NEW READING AFTER FINDING BUILDING
-{
-    if (ui->READING_MONTH->text().isEmpty() || ui->READING_VALUE->text().isEmpty()) {
-        QMessageBox::warning(this, "Input Error", "Month and Reading Value cannot be empty! ⚠️");
-        return;
-    }
-        // نسحبة من نفس المكان بتاع اول مرة
-        int id = ui->BID_ANER->text().toInt();
-        string name = ui->BNAME_ANER->text().toStdString();
-
-        // نكمل سحب بيانات الشهر والقيمة
-        string month = ui->READING_MONTH->text().toStdString();
-        float val = ui->READING_VALUE->text().toFloat();
-
-        // نعمل كول للفانكشن
-       bool hasAlert = AddEnergyReading(buildings, building_counter, readings, reading_counter,
-                         alerts, alert_counter, numberOfUnresolvedAlerts,
-                         id, name, month, val);
-        // بعد سطر AddEnergyReading...
-
-       if (hasAlert) {
-           float buildingLimit = 0;
-
-           // بندور على المبنى في الـ Array عشان نجيب الليميت بتاعه
-           for (int j = 0; j < building_counter; j++) {
-               if (buildings[j].ID == id) {
-                   buildingLimit = buildings[j].Monthly_Limit;
-                   break;
-               }
-           }
-
-           float overUsage = val - buildingLimit; // هنا الـ 300 هتتحسب صح
-
-           QMessageBox::critical(this, "⚠️ ALERT!",
-                                 QString("Warning! Building %1 has exceeded its limit!\n\n"
-                                         "Current Reading: %2\n"
-                                         "Monthly Limit: %3\n"
-                                         "Over-consumption Amount: %4")
-                                     .arg(QString::fromStdString(name))
-                                     .arg(val)
-                                     .arg(buildingLimit)
-                                     .arg(overUsage));
-       } // ده قوس نهاية الـ if (hasAlert) اللي في سطر 179
-else {
-    // الرسالة دي هتظهر لو القراءة سليمة (أقل من الليميت)
-    QMessageBox::information(this, "Reading Added",
-                             QString("Energy reading for %1 has been recorded successfully! ✅")
-                                 .arg(QString::fromStdString(name)));
-}
-} // ده قوس نهاية الـ on_CONFIRM_NER_clicked
-
-
-void my_project::on_BACK_MENU_ANER2_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(MAIN_MENU);
-}
-
-
-void my_project::on_display_information_btn_clicked()
-{
-ui->stackedWidget->setCurrentIndex(BUILDING_MENU);
+    ui->stackedWidget->setCurrentIndex(Add_new_building);
 }
 
 
 void my_project::on_Add_building_confirm_clicked()
 {
     if (ui->id_input->text().isEmpty() || ui->name_input->text().isEmpty() ||
-        ui->type_input->text().isEmpty() || ui->limit_input->text().isEmpty())
-    {
-        QMessageBox::warning(this, "Input Error", "All fields are required to add a new building! ⚠️");
+        ui->type_input->text().isEmpty() || ui->limit_input->text().isEmpty()) {
+        QMessageBox::warning(this,
+                             "Input Error",
+                             "All fields are required to add a new building! ⚠️");
         return; // اخرج وم تكملش إضافة
+    }
+    QRegularExpression letters("^[A-Za-z0-9 ]+$");
+
+    if (!letters.match(ui->name_input->text()).hasMatch())
+    {
+        QMessageBox::warning(this,
+                             "Invalid Name",
+                             "Name must contain letters only!");
+        return;
+    }
+
+    if (!letters.match(ui->type_input->text()).hasMatch())
+    {
+        QMessageBox::warning(this,
+                             "Invalid Type",
+                             "Type must contain letters only!");
+        return;
+    }
+
+    bool ok;
+    ui->id_input->text().toInt(&ok);
+    if (!ok)
+    {
+        QMessageBox::warning(this,
+                             "Invalid ID",
+                             "ID must be numbers only!");
+        return;
+    }
+
+    ui->limit_input->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox::warning(this,
+                             "Invalid Limit",
+                             "Limit must be a valid number!");
+        return;
     }
     // سحب البيانات من الشاشة
     int id = ui->id_input->text().toInt();
@@ -214,20 +176,20 @@ void my_project::on_Add_building_confirm_clicked()
 
     // نداء الفانكشن الشبيهة بكودك القديم
     AddBuildingGUI(buildings, building_counter, id, name, type, limit);
+    ui->id_input->clear();
+    ui->name_input->clear();
+    ui->type_input->clear();
+    ui->limit_input->clear();
 }
-
-
-void my_project::on_Add_new_building_btn_clicked()
-{
-ui->stackedWidget->setCurrentIndex(Add_new_building);
-}
-
-
 void my_project::on_Back_ANB_clicked()
 {
-     ui->stackedWidget->setCurrentIndex(MAIN_MENU);
+    ui->stackedWidget->setCurrentIndex(MAIN_MENU);
 }
 
+//******END OF ADD NEW BUILDING PROCES********
+
+
+//******START OF DISPLAY BUILDING INFORMATION******
 
 void my_project::on_display_BI_btn_clicked()
 {
@@ -237,7 +199,9 @@ void my_project::on_display_BI_btn_clicked()
 
 void my_project::on_BACK_DBI_clicked()
 {
-     ui->stackedWidget->setCurrentIndex(MAIN_MENU);
+    ui->search_id->clear();
+    ui->search_name->clear();
+    ui->stackedWidget->setCurrentIndex(MAIN_MENU);
 }
 
 
@@ -259,7 +223,7 @@ void my_project::on_Search_building_clicked()
         ui->label_consumption->setText(QString::number(buildings[index].Total_consumption));
         ui->label_score->setText(QString::number(buildings[index].Efficiency_Score) + "%");
 
-         ui->stackedWidget->setCurrentIndex(Display_building_info2);
+        ui->stackedWidget->setCurrentIndex(Display_building_info2);
     }
     else {
         // لو مش موجود
@@ -267,9 +231,290 @@ void my_project::on_Search_building_clicked()
     }
 }
 
+//******END OF DISPLAY BUILDING INFORMATION PROCES********
 
 
-// calculate efficiency score progress
+// --------------END OF DISPLAY & ADD BUILDING INFORMATION-----------------------
+
+
+
+ // --------------------START OF ADD NEW ENERGY READING PROCESES----------------------
+void my_project::on_new_energy_reading_btn_clicked()
+{
+     ui->stackedWidget->setCurrentIndex(Building_VALIDATION);
+}
+
+
+void my_project::on_CON_N_ID_ANER_clicked() // BUILDING VALIDATION
+{
+    if (ui->BID_ANER->text().isEmpty() ||
+        ui->BNAME_ANER->text().isEmpty())
+    {
+        QMessageBox::warning(this,
+                             "Input Error",
+                             "ID and Name are required!");
+        return;
+    }
+
+    bool ok;
+    int inputID = ui->BID_ANER->text().toInt(&ok);
+    if (!ok)
+    {
+        QMessageBox::warning(this,
+                             "Invalid ID",
+                             "ID must be numbers only!");
+        return;
+    }
+    QRegularExpression letters("^[A-Za-z0-9 ]+$");
+
+    if (!letters.match(ui->BNAME_ANER->text()).hasMatch())
+    {
+        QMessageBox::warning(this,
+                             "Invalid Name",
+                             "Name must contain letters only!");
+        return;
+    }
+    string inputName = ui->BNAME_ANER->text().toStdString();
+
+    bool building_found = false;
+
+    // هندور على ال BUILDING في ال ARRAY
+    for (int i = 0; i < building_counter; i++) {
+        if (buildings[i].ID == inputID && buildings[i].Name == inputName) {
+            building_found = true;
+            break;
+        }
+    }
+
+    // 3. اتخاذ قرار بناءً على النتيجة
+    if (building_found) {
+        // لو المبنى موجود بيدخل يدخل قراءة
+        //  ui->BID_ANER->clear();
+        //  ui->BNAME_ANER->clear();
+        ui->stackedWidget->setCurrentIndex(ADD_READING_DATA);
+
+
+    } else {
+        // لو ملقاش المبنى
+        QMessageBox::critical(this, "Error", "Building not found! Please check the ID and Name.");
+    }
+}
+
+
+void my_project::on_BACK_MENU_clicked()
+{
+     ui->stackedWidget->setCurrentIndex(MAIN_MENU);
+}
+
+
+void my_project::on_CONFIRM_NER_clicked() // ADD NEW READING AFTER FINDING BUILDING
+{
+    if (ui->READING_MONTH->text().isEmpty() || ui->READING_VALUE->text().isEmpty()) {
+        QMessageBox::warning(this, "Input Error", "Month and Reading Value cannot be empty! ⚠️");
+        return;
+    }
+
+    // نسحبة من نفس المكان بتاع اول مرة
+    int id = ui->BID_ANER->text().toInt();
+    string name = ui->BNAME_ANER->text().toStdString();
+
+    // نكمل سحب بيانات الشهر والقيمة
+    QString monthQ = ui->READING_MONTH->text();
+    QRegularExpression monthRx("^[A-Za-z ]+$");
+
+    if (!monthRx.match(monthQ).hasMatch())
+    {
+        QMessageBox::warning(this,
+                             "Invalid Month",
+                             "Month must be added in letters");
+        return;
+    }
+
+    string month = monthQ.toStdString();
+    bool ok;
+    float val = ui->READING_VALUE->text().toFloat(&ok);
+
+    if (!ok)
+    {
+        QMessageBox::warning(this,
+                             "Invalid Value",
+                             "Reading must be a valid number!");
+        return;
+    }
+    int check_id = ui->BID_ANER->text().toInt();
+    string check_month = ui->READING_MONTH->text().toStdString();
+    for (int i = 0; i < reading_counter; i++) {
+        if (readings[i].BuildingID == check_id && readings[i].month == check_month) {
+            QMessageBox::warning(this, "Duplicate Reading", "This building already has a reading for this month!");
+            return;
+        }
+    }
+
+    // نعمل كول للفانكشن
+    bool hasAlert = AddEnergyReading(buildings,
+                                     building_counter,
+                                     readings,
+                                     reading_counter,
+                                     alerts,
+                                     alert_counter,
+                                     numberOfUnresolvedAlerts,
+                                     id,
+                                     name,
+                                     month,
+                                     val);
+    // بعد سطر AddEnergyReading...
+
+    if (hasAlert) {
+        float buildingLimit = 0;
+
+        // بندور على المبنى في الـ Array عشان نجيب الليميت بتاعه
+        for (int j = 0; j < building_counter; j++) {
+            if (buildings[j].ID == id) {
+                buildingLimit = buildings[j].Monthly_Limit;
+                break;
+            }
+        }
+
+        float overUsage = val - buildingLimit; // هنا الـ 300 هتتحسب صح
+
+        QMessageBox::critical(this,
+                              "⚠️ ALERT!",
+                              QString("Warning! Building %1 has exceeded its limit!\n\n"
+                                      "Current Reading: %2\n"
+                                      "Monthly Limit: %3\n"
+                                      "Over-consumption Amount: %4")
+                                  .arg(QString::fromStdString(name))
+                                  .arg(val)
+                                  .arg(buildingLimit)
+                                  .arg(overUsage));
+        ui->READING_MONTH->clear();
+        ui->READING_VALUE->clear();
+        ui->BID_ANER->clear();
+        ui->BNAME_ANER->clear();
+    } // ده قوس نهاية الـ if (hasAlert) اللي في سطر 179
+    else {
+        // الرسالة دي هتظهر لو القراءة سليمة (أقل من الليميت)
+        QMessageBox::information(this,
+                                 "Reading Added",
+                                 QString("Energy reading for %1 has been recorded successfully! ✅")
+                                     .arg(QString::fromStdString(name)));
+        ui->READING_MONTH->clear();
+        ui->READING_VALUE->clear();
+        ui->BID_ANER->clear();
+        ui->BNAME_ANER->clear();
+    }
+} // ده قوس نهاية الـ on_CONFIRM_NER_clicked
+
+void my_project::on_BACK_MENU_ANER2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(MAIN_MENU);
+}
+
+// ------------------END OF ADD NEW ENERGY READING PROCES---------------------------
+
+
+
+//-----------START GENERATE ALERT PROCES-------------
+
+void my_project::on_generate_alerts_btn_clicked()
+{// 1. مفيش تصفير للعدادات هنا خالص عشان نحافظ على القديم
+    // السطر ده هو اللي ناقصك عشان الـ Error يختفي
+    int alertsBefore = alert_counter;
+    // 2. بننادي الفانكشن اللي عملناها في alert.cpp
+    // الفانكشن دي جواها الـ Loop والـ "alreadyExists" تشيك وكل حاجة
+    check_alert_generate(
+        buildings,
+        building_counter,
+        readings,
+        reading_counter,
+        alerts,
+        alert_counter,
+        numberOfUnresolvedAlerts
+        );
+
+    // بنحسب الفرق عشان نعرف كام Alert جديد اتضاف فعلياً
+    int newAlertsCount = alert_counter - alertsBefore;
+
+    // رسالة احترافية ومريحة لليوزر
+    if (newAlertsCount > 0) {
+        QMessageBox::information(this,
+                                 "System Audit Complete",
+                                 "💡 Analysis finished!\n\n" +
+                                     QString::number(newAlertsCount) + " new energy alerts have been identified and added to your dashboard.");
+    } else {
+        QMessageBox::information(this,
+                                 "System Audit Complete",
+                                 "✅ All systems normal.\n\nNo new over-consumption patterns detected at this time.");
+    }
+}
+//----------------END OF GENERATE ALERT PROCES-----------------
+
+
+
+// --------------START OF VIEW UNRESOLVED ALERTS PROCES---------------
+
+void my_project::on_view_unresolverd_alerts_clicked()
+{
+
+    QStringList result; // الشنطة اللي هنجمع فيها الكلام
+
+    // 1. مناداة الفانكشن بتاعتك
+    displayOverconsumption(alerts, alert_counter, result);
+
+    // 2. عرض النتيجة في الـ List Widget اللي في Screenshot 2026-04-30 193302.png
+    ui->listWidget_alerts->clear();
+    ui->listWidget_alerts->addItems(result);
+    ui->stackedWidget->setCurrentIndex(view_unresolved_alerts);
+}
+
+
+void my_project::on_BACK_VURA_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(MAIN_MENU);
+
+}
+
+//-------------------END OF VIEW UNRESOLVED PROCES-----------------
+
+
+// ----------------START OF RESOLVE ALERT PROCESS---------------------
+void my_project::on_resolve_alert_btn_clicked()
+{
+    // 1. نتأكد إن اليوزر اختار سطر فعلاً من اللستة
+    if (!ui->listWidget_alerts->currentItem()) {
+        QMessageBox::warning(this, "Selection Required", "Please select an alert from the list first! 🖱️");
+        return;
+    }
+
+    // 2. نجيب النص اللي مكتوب في السطر اللي اختاره
+    QString selectedText = ui->listWidget_alerts->currentItem()->text();
+
+    // 3. حركة ذكية: نطلع الـ ID من النص
+    // لو النص شكله "Alert ID: 5 | ..." إحنا عايزين رقم 5
+    // أسهل طريقة لو إنتي مثبتة التنسيق هي استخدام الـ QRegularExpression أو التقطيع
+    // بس عشان منتعقدش، هفترض إنك هتاخدي أول رقم يقابلك في السطر:
+
+    int alertID = selectedText.section('#', 1, 1).section('\n', 0, 0).toInt();
+    // ملاحظة: الـ section دي بتعتمد على شكل النص اللي إنتي كتبتيه في الـ View
+    // لو النص عندك بيبدأ بـ "Alert ID: 1"، استخدمي التقسيم المناسب له.
+
+    // 4. نادي الـ Logic
+    int res = resolveAlert(alertID, alerts, alert_counter, numberOfResolvedAlerts, numberOfUnresolvedAlerts);
+
+    if (res == 1) {
+        QMessageBox::information(this, "Success", "Alert #" + QString::number(alertID) + " has been resolved! ✅");
+        numberOfResolvedAlerts++;
+        numberOfUnresolvedAlerts--;
+        // 5. تحديث اللستة فوراً عشان السطر يختفي أو يتغير حالته
+        on_view_unresolverd_alerts_clicked();
+    }
+}
+//--------------------- END OF RESOLVE ALERT PROCESS---------------------
+
+
+
+
+//--------------------START OF CALCULATE EFFIECIENCY PROCESS----------------
 
 
 
@@ -310,11 +555,51 @@ void my_project::on_START_CALCULATION_BTN_clicked()
 
 void my_project::on_BACK_CALC_clicked()
 {
+    // 1. تصفير الـ ProgressBar
+    ui->progressBar_calc->setValue(0);
+
+    // 2. مسح رسالة النجاح الخضراء
+    ui->CALC_LABEL->clear();
      ui->stackedWidget->setCurrentIndex(MAIN_MENU);
+}
+//-----------------END OF CALCULATE EFFICIENCY PROCESS---------------------------
+
+
+
+
+
+//--------------START OF GENERATE MONTHLY REPORT PROCES--------------------
+
+void my_project::on_generate_montly_report_btn_clicked()
+{
+        // 1. نطلب الشهر من اليوزر
+        bool isMonthEntered; // غيرنا الاسم هنا
+        QString targetMonth = QInputDialog::getText(this, "Monthly Report", "Enter Month Name:", QLineEdit::Normal, "", &isMonthEntered);
+
+        // بنشيك لو اليوزر دخل قيمة وداس موافق فعلاً
+        if (isMonthEntered && !targetMonth.isEmpty()) {
+
+            // 2. ننادي الفانكشن بتاعتك باللوجيك الجديد
+            string monthStr = targetMonth.toStdString();
+            string finalReport = generateMonthlyCampusReport(buildings, building_counter, readings, reading_counter, alerts, alert_counter, monthStr);
+
+            // 3. نعرض النتيجة في الـ Message Box
+            QMessageBox::information(this, "Campus Report", QString::fromStdString(finalReport));
+        }
+
 }
 
 
-// logout progress
+
+void my_project::on_BACK_FROM_DISPLAY_clicked()
+{
+     ui->stackedWidget->setCurrentIndex(MAIN_MENU);
+}
+//----------------END OF GENERATE MONTHLY REPORT PROCES----------------
+
+
+
+//-----------------START OF LOGOUT PROCES---------------------
 
 
 
@@ -333,151 +618,11 @@ void my_project::on_log_out_btn_clicked()
         ui->password_input->clear();
     }
 }
-// GENERATE ALERT PROGRESS
 
-void my_project::on_generate_alerts_btn_clicked()
-{
-    alert_counter = 0;
-    numberOfUnresolvedAlerts = 0;
-
-    int created = 0;
-
-    for (int i = 0; i < reading_counter; i++) {
-        for (int j = 0; j < building_counter; j++) {
-            if (readings[i].BuildingID == buildings[j].ID) {
-
-                // 2. شيكي بس على الاستهلاك
-                if (readings[i].consumption_value > buildings[j].Monthly_Limit) {
-                    if (alert_counter < 100) {
-                        generate_alert_for_over_usage(
-                            readings[i].consumption_value,
-                            buildings[j].Monthly_Limit,
-                            buildings[j].Name,
-                            buildings[j].ID,
-                            readings[i].month,
-                            alerts,
-                            alert_counter,
-                            numberOfUnresolvedAlerts
-                            );
-                        created++;
-                    }
-                }
-            }
-        }
-    }
+//-------------------END OF LOG OUT PROCES---------------------------
 
 
-    if (created > 0) {
-        QMessageBox::information(this, "Success", QString("Done! %1 alerts generated.").arg(created));
-    } else {
-        QMessageBox::information(this, "System Scan", "No over-consumption found.");
-    }
-}
-// VIEW UNRESOLVED ALERTS PROGRESS
-
-void my_project::on_view_unresolverd_alerts_clicked()
-{
-
-        QStringList result; // الشنطة اللي هنجمع فيها الكلام
-
-        // 1. مناداة الفانكشن بتاعتك
-        displayOverconsumption(alerts, alert_counter, result);
-
-        // 2. عرض النتيجة في الـ List Widget اللي في Screenshot 2026-04-30 193302.png
-        ui->listWidget_alerts->clear();
-        ui->listWidget_alerts->addItems(result);
- ui->stackedWidget->setCurrentIndex(view_unresolved_alerts);
-}
-
-
-void my_project::on_BACK_VURA_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(MAIN_MENU);
-
-}
-
-
-void my_project::on_resolve_alert_btn_clicked()
-{
-    // 1. نتأكد إن اليوزر اختار سطر فعلاً من اللستة
-    if (!ui->listWidget_alerts->currentItem()) {
-        QMessageBox::warning(this, "Selection Required", "Please select an alert from the list first! 🖱️");
-        return;
-    }
-
-    // 2. نجيب النص اللي مكتوب في السطر اللي اختاره
-    QString selectedText = ui->listWidget_alerts->currentItem()->text();
-
-    // 3. حركة ذكية: نطلع الـ ID من النص
-    // لو النص شكله "Alert ID: 5 | ..." إحنا عايزين رقم 5
-    // أسهل طريقة لو إنتي مثبتة التنسيق هي استخدام الـ QRegularExpression أو التقطيع
-    // بس عشان منتعقدش، هفترض إنك هتاخدي أول رقم يقابلك في السطر:
-
-    int alertID = selectedText.section('#', 1, 1).section('\n', 0, 0).toInt();
-    // ملاحظة: الـ section دي بتعتمد على شكل النص اللي إنتي كتبتيه في الـ View
-    // لو النص عندك بيبدأ بـ "Alert ID: 1"، استخدمي التقسيم المناسب له.
-
-    // 4. نادي الـ Logic
-    int res = resolveAlert(alertID, alerts, alert_counter, numberOfResolvedAlerts, numberOfUnresolvedAlerts);
-
-    if (res == 1) {
-        QMessageBox::information(this, "Success", "Alert #" + QString::number(alertID) + " has been resolved! ✅");
-        numberOfResolvedAlerts++;
-        numberOfUnresolvedAlerts--;
-        // 5. تحديث اللستة فوراً عشان السطر يختفي أو يتغير حالته
-        on_view_unresolverd_alerts_clicked();
-    }
-}
-// generate monthly report progress
-
-void my_project::on_generate_montly_report_btn_clicked()
-{
-    numberOfResolvedAlerts = 0;
-    numberOfUnresolvedAlerts = 0;
-
-    for (int i = 0; i < alert_counter; i++) {
-        if (alerts[i].status == "Resolved")
-            numberOfResolvedAlerts++;
-        else if (alerts[i].status == "Unresolved")
-            numberOfUnresolvedAlerts++;
-    }
-        // 1. حساب القيم باستخدام الفانكشنز اللي عدلناها
-        float totalConsumption = calculateTotalCampusConsumption(buildings, building_counter);
-        QString mostEfficient = QString::fromStdString(getMostEfficientBuilding(buildings, building_counter));
-        QString leastEfficient = QString::fromStdString(getLeastEfficientBuilding(buildings, building_counter));
-
-        // 2. تجهيز النص بتنسيق احترافي
-        QString reportText = QString(
-                                 "📊 --- MONTHLY CAMPUS REPORT ---\n\n"
-                                 "⚡ Total Campus Consumption: %1 kWh\n"
-                                 "🏆 Most Efficient Building: %2\n"
-                                 "⚠️ Least Efficient Building: %3\n\n"
-                                 "------------------------------------------\n"
-                                 "🚨 Unresolved Alerts: %4\n"
-                                 "✅ Resolved Alerts: %5\n"
-                                 )
-                                 .arg(totalConsumption)
-                                 .arg(mostEfficient)
-                                 .arg(leastEfficient)
-                                 .arg(numberOfUnresolvedAlerts)
-                                 .arg(numberOfResolvedAlerts);
-
-        // 3. عرض التقرير في MessageBox
-        QMessageBox msgBox;
-        msgBox.setWindowTitle("Campus Energy Report");
-        msgBox.setText(reportText);
-        msgBox.setIcon(QMessageBox::Information);
-        msgBox.setStyleSheet("QLabel{ min-width: 300px; font-size: 14px; }"); // تظبيط حجم الخط
-        msgBox.exec();
-
-}
-
-
-void my_project::on_BACK_FROM_DISPLAY_clicked()
-{
-     ui->stackedWidget->setCurrentIndex(MAIN_MENU);
-}
-
+//-------------------SAVE DATA OF ALL PROJECT-----------------------
 void my_project::closeEvent(QCloseEvent *event) {
     // نستخدم المتغيرات اللي متعرفة جوه الكلاس (الأسماء اللي بالأسود في الصورة اللي فاتت)
     saveData(buildings, building_counter, readings, reading_counter, alerts, alert_counter, admins, current_admin_numbers);

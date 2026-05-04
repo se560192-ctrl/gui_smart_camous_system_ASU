@@ -6,17 +6,30 @@
 using namespace std;
 // define function to check limit  ---> amal
 void check_alert_generate(building buildings[], int& building_counter, EnergyReading readings[], int reading_counter, Alert alerts[], int& alert_counter, int& numberOfUnresolvedAlerts) {
-	for (int i = 0; i < reading_counter; i++) {
-		for (int j = 0; j < building_counter; j++) {
-			if (readings[i].BuildingID == buildings[j].ID) {
-				if (readings[i].consumption_value > buildings[j].Monthly_Limit) {
-                    // سطر 14 المعدل
-                    generate_alert_for_over_usage(readings[i].consumption_value, buildings[j].Monthly_Limit, buildings[j].Name, buildings[j].ID, readings[i].month, alerts, alert_counter, numberOfUnresolvedAlerts);
-				}
-			}
-		}
-	}
+    for (int i = 0; i < reading_counter; i++) {
+        for (int j = 0; j < building_counter; j++) {
+            // 1. لو القراءة تبع المبنى ده ومعدية الليميت
+            if (readings[i].BuildingID == buildings[j].ID) {
+                if (readings[i].consumption_value > buildings[j].Monthly_Limit) {
 
+                    // 2. بنشيك هل المبنى ده طلعله Alert في الشهر ده قبل كدة؟
+                    bool alreadyExists = false;
+                    for (int k = 0; k < alert_counter; k++) {
+                        if (alerts[k].BuildingID == readings[i].BuildingID &&
+                            alerts[k].month == readings[i].month) {
+                            alreadyExists = true;
+                            break;
+                        }
+                    }
+
+                    // 3. لو مش موجود، كريت واحد جديد
+                    if (!alreadyExists) {
+                        generate_alert_for_over_usage(readings[i].consumption_value, buildings[j].Monthly_Limit, buildings[j].Name, buildings[j].ID, readings[i].month, alerts, alert_counter, numberOfUnresolvedAlerts);
+                    }
+                }
+            }
+        }
+    }
 }
 // define function to generate alert for over usage
 void generate_alert_for_over_usage(float consumption_value, float Monthly_Limit, string building_name, int building_id, string month, Alert alerts[], int& alert_counter, int& numberOfUnresolvedAlerts) {
