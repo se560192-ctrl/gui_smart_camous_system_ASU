@@ -38,7 +38,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>6</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="first_page">
     <widget class="QLabel" name="welcome_label">

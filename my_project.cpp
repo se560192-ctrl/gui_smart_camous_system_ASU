@@ -132,7 +132,7 @@ void my_project::on_Add_building_confirm_clicked()
                              "All fields are required to add a new building! ⚠️");
         return; // اخرج وم تكملش إضافة
     }
-    QRegularExpression letters("^[A-Za-z0-9 ]+$");
+    QRegularExpression letters("^[A-Za-z0-9_ ]+$");
 
     if (!letters.match(ui->name_input->text()).hasMatch())
     {
@@ -265,7 +265,7 @@ void my_project::on_CON_N_ID_ANER_clicked() // BUILDING VALIDATION
                              "ID must be numbers only!");
         return;
     }
-    QRegularExpression letters("^[A-Za-z0-9 ]+$");
+    QRegularExpression letters("^[A-Za-z0-9_ ]+$");
 
     if (!letters.match(ui->BNAME_ANER->text()).hasMatch())
     {
@@ -419,16 +419,27 @@ void my_project::on_BACK_MENU_ANER2_clicked()
 void my_project::on_generate_alerts_btn_clicked()
 {
     // 1. نادي الفانكشن اللي بتعمل مسح شامل وتضيف الجديد
-    check_alert_generate(buildings, building_counter, readings, reading_counter, alerts, alert_counter, numberOfUnresolvedAlerts);
+    check_alert_generate(buildings,
+                         building_counter,
+                         readings,
+                         reading_counter,
+                         alerts,
+                         alert_counter,
+                         numberOfUnresolvedAlerts);
 
     // 2. نحسب عدد الـ Resolved (الحسابي)
     // بما إننا عندنا الإجمالي وعندنا الـ Unresolved، يبقى الفرق هو الـ Resolved
-    int resolvedCount = alert_counter - numberOfUnresolvedAlerts;
+    int resolvedCount =0;
+    int unresolvedcount=0;
+    for(int i=0;i<alert_counter;i++){
+        if(alerts[i].status=="Unresolved")unresolvedcount++;
+        else resolvedCount++;
+    }
 
     // 3. نجهز رسالة التقرير الشامل
     QString report = "📊 --- System Alerts Report --- 📊\n\n";
     report += "✅ Total Alerts in System: " + QString::number(alert_counter) + "\n";
-    report += "🔴 Unresolved Alerts: " + QString::number(numberOfUnresolvedAlerts) + "\n";
+    report += "🔴 Unresolved Alerts: " + QString::number(unresolvedcount) + "\n";
     report += "🟢 Resolved Alerts: " + QString::number(resolvedCount) + "\n\n";
 
     // 4. لو فيه تنبيهات، نعرض الـ IDs بتاعتها (أو آخر IDs لو العدد كبير)
@@ -436,7 +447,8 @@ void my_project::on_generate_alerts_btn_clicked()
         report += "🆔 Alert IDs currently active: ";
         for (int i = 0; i < alert_counter; i++) {
             report += QString::number(alerts[i].AlertID);
-            if (i < alert_counter - 1) report += ", "; // فاصل بين الأرقام
+            if (i < alert_counter - 1)
+                report += ", "; // فاصل بين الأرقام
         }
     } else {
         report += "No alerts have been generated yet.";
